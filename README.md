@@ -68,3 +68,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 The firebase config file has not been uploaded due to private credentials. In order to make the app run, go to firebase.google.com, create new project by any name, specify authentication criteria with email/password authentication and click continue. Now click code button, specify the name of the application you want to register via firebase, proceed forward. Now you can see the firebaseConfig configurations. Copy those and paste it in Firebase config file.
+
+###The config file will be positioned in firebase folder. It will be containing following credentials provided by firebase:
+
+var firebaseConfig = {
+apiKey: "abc.....",
+authDomain: "abc....",
+databaseURL: "https://abc.com",
+projectId: "hooks-news-app-abc....",
+storageBucket: "abc....",
+messagingSenderId: "123....",
+appId: "12246....",
+measurementId: "ABCD",
+};
+// Initialize Firebase
+
+export default firebaseConfig;
