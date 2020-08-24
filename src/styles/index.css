@@ -28,6 +28,10 @@ input {
   width: 85%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .button {
   font-family: monospace;
   font-size: 10pt;
