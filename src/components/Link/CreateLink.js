@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import useFormValidation from "../Auth/useFormValidation";
 import validateCreateLink from "../Auth/validateCreateLink";
+import FirebaseContext from "../../firebase/context";
 const INITIAL_STATE = {
   description: "",
   url: "",
 };
 function CreateLink(props) {
+  const { firebase, user } = useContext(FirebaseContext);
   const { handleSubmit, handleChange, values, errors } = useFormValidation(
     INITIAL_STATE,
     validateCreateLink,
     handleCreateLink
   );
   function handleCreateLink() {
-    console.log("Link created!");
+    if (!user) {
+      props.history.push("/login");
+    } else {
+      const { description, url } = values;
+      const newLink = {
+        description,
+        url,
+        postedBy: {
+          id: user.uid,
+          name: user.displayName,
+        },
+        votes: [],
+        comments: [],
+        created: Date.now(), //For current date and time
+      };
+      firebase.db.collection("links").add(newLink);
+      props.history.push("/");
+    }
   }
   return (
     <form className="flex flex-column mt3" onSubmit={handleSubmit}>
